@@ -1,4 +1,4 @@
-#ReactStarterKit
+# SolidStarterKit
 
 ## Как использовать
 
