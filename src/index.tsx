@@ -1,6 +1,7 @@
 import {App} from 'app/components/App';
 import {render} from 'solid-js/web';
 import 'styles/index.less';
+import 'solid-devtools';
 
 const container = document.getElementById('root');
 

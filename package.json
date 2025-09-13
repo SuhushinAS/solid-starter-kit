@@ -49,6 +49,7 @@
     "postcss-gradient-transparency-fix": "^4.1.0",
     "postcss-loader": "^8.2.0",
     "prettier": "^3.6.2",
+    "solid-devtools": "^0.34.3",
     "style-loader": "^4.0.0",
     "terser-webpack-plugin": "^5.3.14",
     "typescript": "^5.9.2",
