@@ -1,11 +1,4 @@
 {
-  "env": {
-    "development": {
-      "plugins": [
-        "solid-refresh/babel"
-      ]
-    }
-  },
   "plugins": [
     "@babel/plugin-transform-class-properties",
     "@babel/plugin-transform-export-namespace-from",

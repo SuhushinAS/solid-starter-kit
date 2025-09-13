@@ -6,6 +6,12 @@ const container = document.getElementById('root');
 
 if (container) {
   render(App, container);
+
+  if (module.hot) {
+    module.hot.accept('app/components/App', () => {
+      render(App, container);
+    });
+  }
 }
 
 const onRegisterError = (error) => {

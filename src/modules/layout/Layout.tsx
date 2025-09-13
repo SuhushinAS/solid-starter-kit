@@ -8,15 +8,14 @@ type Props = {
   children: JSX.Element;
 };
 
-export const Layout = (props: Props) => {
-  const {children} = props;
+export const Layout = ({children}: Props) => {
   return (
     <div class="Layout">
       <header class="Layout__Header">
         <Header />
       </header>
       <div class="Layout__Scroll">
-        <Scroll isHorizontal={true} isVertical={true}>
+        <Scroll dirList={['h', 'v']}>
           <div class="Layout__Inner">
             <main class="Layout__Body">{children}</main>
           </div>

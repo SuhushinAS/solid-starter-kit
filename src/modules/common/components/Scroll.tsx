@@ -1,23 +1,16 @@
 import baron from 'baron';
 import 'modules/common/components/Scroll.less';
 import {hasScrollbar} from 'modules/common/lib/scrollbarWidth';
-import {createEffect, JSX, onCleanup, onMount, Show} from 'solid-js';
+import {createEffect, For, JSX, onCleanup, onMount} from 'solid-js';
 
 export type TDirection = 'h' | 'v';
 
 type Props = {
   children: JSX.Element;
-  isHorizontal: boolean;
-  isVertical: boolean;
+  dirList: TDirection[];
 };
 
 type Ref<T = HTMLDivElement> = T | ((el: T) => void) | undefined;
-
-type DirList = {
-  bar: Ref;
-  dir: TDirection;
-  track: Ref;
-};
 
 const baronInstanceUpdate = (baronInstance: baron) => {
   baronInstance.update();
@@ -27,47 +20,25 @@ const baronInstanceDispose = (baronInstance: baron) => {
   baronInstance.dispose();
 };
 
-export const Scroll = (props: Props) => {
-  const {children, isHorizontal, isVertical} = props;
-  let root: Ref;
-  let scroller: Ref;
-  let barH: Ref;
-  let barV: Ref;
-  let trackH: Ref;
-  let trackV: Ref;
+export const Scroll = ({children, dirList}: Props) => {
   let baronInstanceList: baron[] = [];
 
-  const init = (props: DirList) => {
-    const {bar, dir, track} = props;
+  const refMap: Record<string, Ref> = {};
 
+  const init = (dir: TDirection) => {
     return baron({
-      bar,
+      bar: refMap[`bar_${dir}`],
       barOnCls: `Scroll_On_${dir}`,
       direction: dir,
       impact: 'scroller',
-      root,
-      scroller,
-      track,
+      root: refMap.root,
+      scroller: refMap.scroller,
+      track: refMap[`track_${dir}`],
     });
-  };
-
-  const getDirList = () => {
-    const result: DirList[] = [];
-
-    if (isHorizontal) {
-      result.push({bar: barH, dir: 'h', track: trackH});
-    }
-
-    if (isVertical) {
-      result.push({bar: barV, dir: 'v', track: trackV});
-    }
-
-    return result;
   };
 
   onMount(() => {
     if (hasScrollbar) {
-      const dirList = getDirList();
       baronInstanceList = dirList.map(init);
       baronInstanceList.forEach(baronInstanceUpdate);
     }
@@ -82,20 +53,25 @@ export const Scroll = (props: Props) => {
   });
 
   return (
-    <div class="Scroll" ref={root}>
-      <div class="Scroll__Scroller" ref={scroller}>
+    <div class="Scroll" ref={refMap.root}>
+      <div class="Scroll__Scroller" ref={refMap.scroller}>
         {children}
       </div>
-      <Show when={isHorizontal}>
-        <div class={`Scroll__Track Scroll__Track_h`} ref={trackH}>
-          <div class={`Scroll__Bar Scroll__Bar_h`} ref={barH} />
-        </div>
-      </Show>
-      <Show when={isVertical}>
-        <div class={`Scroll__Track Scroll__Track_v`} ref={trackV}>
-          <div class={`Scroll__Bar Scroll__Bar_v`} ref={barV} />
-        </div>
-      </Show>
+      <For each={dirList}>
+        {(dir) => {
+          return (
+            <div
+              class={`Scroll__Track Scroll__Track_${dir}`}
+              ref={refMap[`track_${dir}`]}
+            >
+              <div
+                class={`Scroll__Bar Scroll__Bar_${dir}`}
+                ref={refMap[`bar_${dir}`]}
+              />
+            </div>
+          );
+        }}
+      </For>
     </div>
   );
 };

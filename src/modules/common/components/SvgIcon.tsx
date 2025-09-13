@@ -14,8 +14,7 @@ type TIcon = {
   viewBox: string;
 };
 
-export const SvgIcon = (props: Props) => {
-  const {name} = props;
+export const SvgIcon = ({name}: Props) => {
   const [icon, setIcon] = createSignal<TIcon>();
 
   const onImport = (icon: TImport) => {
