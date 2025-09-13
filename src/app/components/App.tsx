@@ -1,3 +1,68 @@
+import {Layout} from 'modules/layout/Layout';
+
 export const App = () => {
-  return <div>App</div>;
+  return (
+    <Layout>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+      <div>App</div>
+    </Layout>
+  );
 };

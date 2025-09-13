@@ -8,13 +8,7 @@ const script = require('./config/script');
 const style = require('./config/style');
 const svg = require('./config/svg');
 
-/**
- * Получить конфигурацию webpack.
- * @param env Окружение.
- * @param argv Аргументы
- * @returns {*} Конфигурация webpack.
- */
-function webpackConfig(env, argv) {
+module.exports = (env, argv) => {
   const {mode} = argv;
   const root = __dirname;
   const options = {
@@ -42,6 +36,4 @@ function webpackConfig(env, argv) {
     svg(options),
     result
   );
-}
-
-module.exports = webpackConfig;
+};
